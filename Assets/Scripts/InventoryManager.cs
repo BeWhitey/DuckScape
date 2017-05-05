@@ -8,17 +8,22 @@ public class InventoryManager : MonoBehaviour
    ///Es correcto borrarlo, pero usadlo como referencia
    ///*En este caso utilicé ints como ejemplos, pero dependiendo de como indexemos los OBJETOS, tendremos que cambiar el tipo de lista y dato
    /// *Suponemos que el int = 0 equivale a la falta de un objeto.
+   /// 
+    public int[] dummy_inventory = new int[0];
 
     private void Start()
     {
-        int[] dummy_inventory = new int[0];
-
         dummy_inventory = AddItem(dummy_inventory, 2);
 
         dummy_inventory = LoseItem(dummy_inventory, 2);
     }
 
-    int[] AddItem(int[] List, int ObjectToAdd)//El tipo de función debe coincidir con el tipo de lista. El tipo de ObjetoToAdd ha de coincidir con la clase de objeto que usemos para instanciar cada item del juego
+    public void AddItem(int ObjectToAdd)
+    {
+        dummy_inventory = AddItem(dummy_inventory, ObjectToAdd);
+    }
+
+    public int[] AddItem(int[] List, int ObjectToAdd)//El tipo de función debe coincidir con el tipo de lista. El tipo de ObjetoToAdd ha de coincidir con la clase de objeto que usemos para instanciar cada item del juego
     {
         int[] NewList = new int[List.Length + 1];//Creamos una nueva lista con un slot más
         for (int i = 0; i < List.Length; i++)//Buscamos los datos de todos los slots que tiene nuestra lista antigua...

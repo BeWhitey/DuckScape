@@ -4,12 +4,12 @@ using UnityEngine;
 
 public abstract class Objects : MonoBehaviour {
 
-    public string pu;
+    public string popUp; //recuadro de informacion emergente al pasar sobre el objeto
     public string name;
     public Texture2D sprite;
 
     public string PopUp()
     {
-        return pu;
+        return popUp;
     }
 }

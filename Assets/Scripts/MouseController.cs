@@ -6,7 +6,8 @@ public class MouseController : MonoBehaviour {
 
     //Variables
     public LayerMask mask;
-    Interactable inter;
+    Objects obj;
+    public InventoryManager inventory;
 
     // Use this for initialization
     void Start () {
@@ -24,12 +25,28 @@ public class MouseController : MonoBehaviour {
         Debug.DrawRay(ray.origin, ray.direction * 20, Color.magenta);
         if (hit)
         {
-            inter = hit.transform.GetComponent<Interactable>();
-            if (inter)
+            obj = hit.transform.GetComponent<Objects>();
+            if (obj)
             {
-                Debug.Log(inter.PopUp());
-                Destroy(inter.gameObject);
+                Debug.Log("harl");
+
+                if (typeof(Interactable) == obj.GetType())
+                {
+                    Interactable interactable = (Interactable)obj; //conversion a tipo interactable
+                    Debug.Log("inter");
+                }
+
+                if(typeof(Collectible) == obj.GetType())
+                {
+                    Collectible collectible = (Collectible)obj; //conversion a tipo collectible
+
+                    Debug.Log(collectible.PopUp());
+                    collectible.gameObject.SetActive(false);
+                    inventory.AddItem(collectible.id);
+                    Debug.Log("coll");
+                }
             }
+
         }
     }
 }
